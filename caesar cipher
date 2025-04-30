@@ -1,0 +1,23 @@
+SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+maxKey = len(SYMBOLS) - 1
+print('Caesar Cipher')
+mode = ''
+while mode not in ('encrypt', 'decrypt'):
+    mode = input('Do you want to (e)ncrypt or (d)ecrypt?\n> ').lower()
+    mode = 'encrypt' if mode.startswith('e') else 'decrypt' if mode.startswith('d') else ''
+while True:
+    try:
+        key = int(input(f'Enter the key (0 to {maxKey}):\n> '))
+        if 0 <= key <= maxKey:
+            break
+    except ValueError:
+        pass
+message = input(f'Enter the message to {mode}:\n> ').upper()
+translated = ''
+for symbol in message:
+    if symbol in SYMBOLS:
+        num = SYMBOLS.find(symbol) + (key if mode == 'encrypt' else -key)
+        translated += SYMBOLS[num % len(SYMBOLS)]
+    else:
+        translated += symbol
+print(translated)
