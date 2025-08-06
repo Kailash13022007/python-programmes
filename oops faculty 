@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Faculty class
+class Faculty {
+private:
+    string name;
+    string subject;
+
+public:
+    void setDetails(string n, string s) {
+        name = n;
+        subject = s;
+    }
+
+    string getName() {
+        return name;
+    }
+
+    string getSubject() {
+        return subject;
+    }
+};
+
+int main() {
+    const int SIZE = 5;
+    Faculty facultyList[SIZE];
+
+    // Use single-word names (no spaces)
+    facultyList[0].setDetails("Ravi", "Mathematics");
+    facultyList[1].setDetails("Priya", "Computer_Science");
+    facultyList[2].setDetails("Kumar", "Physics");
+    facultyList[3].setDetails("Latha", "Chemistry");
+    facultyList[4].setDetails("Arjun", "English");
+
+    string searchName;
+    cout << "Enter Faculty Name (no spaces): ";
+    cin >> searchName;
+
+    bool found = false;
+
+    for (int i = 0; i < SIZE; i++) {
+        if (facultyList[i].getName() == searchName) {
+            cout << "Subject handled by " << facultyList[i].getName() << ": " << facultyList[i].getSubject() << endl;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
+        cout << "Faculty not found in the records." << endl;
+    }
+
+    return 0;
+}
